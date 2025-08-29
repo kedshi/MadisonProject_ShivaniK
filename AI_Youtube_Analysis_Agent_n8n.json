@@ -1,0 +1,500 @@
+{
+  "name": "AI Youtube Analysis Agent n8n",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "29a77893-9440-4e60-bff5-8eaf30226799",
+              "leftValue": "={{ $json.Status }}",
+              "rightValue": "Pending",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "be4e5aaf-33a0-4473-9c0e-5b421cc50a33",
+      "name": "If"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        460,
+        0
+      ],
+      "id": "2e4a2050-19cd-4fb5-8230-432829a08303",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "434a0120-1630-452a-90a1-b2f08f0dc519",
+              "name": "videoId",
+              "value": "={{ $json[\"Youtube Video ID\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "a88d4f78-c527-4f0e-8957-97cea02ea39c",
+              "name": "maxComments",
+              "value": 100,
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        680,
+        0
+      ],
+      "id": "34adfd97-8714-4fca-9ac3-ac47b1b749db",
+      "name": "Set Video Details"
+    },
+    {
+      "parameters": {
+        "url": "https://www.googleapis.com/youtube/v3/commentThreads",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "youTubeOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "part",
+              "value": "snippet"
+            },
+            {
+              "name": "videoId",
+              "value": "={{ $('Set Video Details').item.json.videoId }}"
+            },
+            {
+              "name": "maxResults",
+              "value": "100"
+            },
+            {
+              "name": "order",
+              "value": "relevance"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1080,
+        0
+      ],
+      "id": "726c512c-7a8a-404d-996e-a0f7cf0fb806",
+      "name": "Get Youtube Video Comments",
+      "credentials": {
+        "youTubeOAuth2Api": {
+          "id": "jk71cqIDnnuRoTXm",
+          "name": "YouTube account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get comments from HTTP Request node\nconst comments = $input.first().json.items\n//const comments = response.items || [];\n\n// Get video title from the YouTube node (step 5)\n//const videoData = ;\nconst videoTitle = $('Get Youtube Video Details').first().json.snippet.title;\n\n// Extract comment data\nconst processedComments = comments.map(item => {\n  const comment = item.snippet.topLevelComment.snippet;\n  return {\n    text: comment.textDisplay,\n    author: comment.authorDisplayName,\n    likes: comment.likeCount || 0,\n    publishedAt: comment.publishedAt,\n    replyCount: item.snippet.totalReplyCount || 0\n  };\n});\n\n// Calculate statistics\nconst totalComments = processedComments.length;\nconst totalLikes = processedComments.reduce((sum, c) => sum + c.likes, 0);\nconst avgLikes = totalComments > 0 ? (totalLikes / totalComments).toFixed(2) : 0;\nconst totalReplies = processedComments.reduce((sum, c) => sum + c.replyCount, 0);\n\n// Get top comments by likes\nconst topComments = processedComments\n  .sort((a, b) => b.likes - a.likes)\n  .slice(0, 5);\n\n// Prepare comment texts for AI analysis\nconst commentTexts = processedComments\n  .slice(0, 50) // Limit to 50 comments for AI analysis\n  .map(c => c.text)\n  .join('\\n---\\n');\n\n// Basic sentiment analysis (count positive/negative keywords)\nconst positiveWords = ['love', 'great', 'awesome', 'amazing', 'excellent', 'good', 'fantastic', 'helpful', 'thanks'];\nconst negativeWords = ['hate', 'terrible', 'awful', 'bad', 'worst', 'horrible', 'useless', 'waste'];\n\nlet positiveCount = 0;\nlet negativeCount = 0;\n\nprocessedComments.forEach(comment => {\n  const lowerText = comment.text.toLowerCase();\n  positiveWords.forEach(word => {\n    if (lowerText.includes(word)) positiveCount++;\n  });\n  negativeWords.forEach(word => {\n    if (lowerText.includes(word)) negativeCount++;\n  });\n});\n\nreturn [{\n  json: {\n    videoTitle,\n    totalComments,\n    avgLikes,\n    totalReplies,\n    topComments,\n    commentTexts,\n    processedComments,\n    sentimentCounts: {\n      positive: positiveCount,\n      negative: negativeCount,\n      neutral: totalComments - positiveCount - negativeCount\n    }\n  }\n}];\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1280,
+        0
+      ],
+      "id": "1d8bca0e-ad0d-4567-b9cc-54cf9c42d859",
+      "name": "Prepare Comments Data"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "15wvmmyF7OOvZ5hrvNeowQlKbjTK1j6bpiWOf7tL-okU",
+          "mode": "list",
+          "cachedResultName": "Youtube_Video",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15wvmmyF7OOvZ5hrvNeowQlKbjTK1j6bpiWOf7tL-okU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15wvmmyF7OOvZ5hrvNeowQlKbjTK1j6bpiWOf7tL-okU/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "bce73955-9134-4255-9226-d8b4eda1aa53",
+      "name": "Pick Video Ids from Google Sheet",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "PNgkqk0FwdGbEMjp",
+          "name": "Google Sheets Trigger account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "video",
+        "operation": "get",
+        "videoId": "={{ $json.videoId }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.youTube",
+      "typeVersion": 1,
+      "position": [
+        860,
+        0
+      ],
+      "id": "fd9b6e5e-b3fc-4213-b238-8b0dcd4d6fa1",
+      "name": "Get Youtube Video Details",
+      "credentials": {
+        "youTubeOAuth2Api": {
+          "id": "eUfzH90zSUqMrPIf",
+          "name": "YouTube account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Analyze these comments from the Video titled as \"{{ $json.videoTitle }}\":\n\nTotal Comments: {{ $json.totalComments }}\n\nAverage Like: {{ $json.avgLikes }}\n\nTotal Replies: {{ $json.totalReplies }}\n\nComments to Analyze: {{ $json.commentTexts }}",
+        "options": {
+          "systemMessage": "You are a YouTube comment analyst. Analyze the provided comments and return a structured analysis with:\n1. Overall sentiment breakdown (positive/negative/neutral percentages)\n2. Top 3-5 main themes or topics discussed\n3. Common questions from viewers\n4. Key feedback points and suggestions\n5. Actionable insights for content improvement\n\nFormat your response in clear sections with headers in json key value format and use underscore in the key name. Always use following keys for output json: \n1. overall_sentiment_breakdown\n2. main_themes\n3. common_questions\n4. key_feedback_points\n5. actionable_insights",
+          "maxIterations": 100
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        1500,
+        0
+      ],
+      "id": "a6000592-adca-4e84-9791-6a38759ddffd",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {
+          "responseFormat": "json_object"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1540,
+        220
+      ],
+      "id": "50a421ed-1437-40fd-8172-4685b7c286da",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "SFHRTsPDI6V0ndaS",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const output = JSON.parse($json.output)\n //return output; \n//return output.overall_sentiment_breakdown.Positive;\n\nlet common_question = \"\";\n  \noutput.common_questions.map(rec => {\n  return common_question += \"<li>\"+rec.trim().replace(new RegExp(\".*,$\"), \"\")+\"</li>\"\n})\n\nlet key_feedback_points_and_suggestions = \"\";\n\noutput.key_feedback_points.map(rec => {\n  return key_feedback_points_and_suggestions += \"<li>\"+rec.trim().replace(new RegExp(\".*,$\"), \"\")+\"</li>\"\n})\n\n\nlet actionable_insights_for_content_improvement = \"\"\n\noutput.actionable_insights.map(rec => {\n  return actionable_insights_for_content_improvement += \"<li>\"+rec.trim().replace(new RegExp(\".*,$\"), \"\")+\"</li>\"\n})\n\n\n// return {common_question};\n\n\n     \n\n//return output; \n// Generate the email HTML\nconst emailHTML = `\n<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }\n    .header { background: #f4f4f4; padding: 20px; border-radius: 5px; }\n    .section { margin: 20px 0; }\n    .stats { background: #e9ecef; padding: 15px; border-radius: 5px; }\n    .analysis { background: #f8f9fa; padding: 20px; border-radius: 5px; }\n    h2 { color: #2c3e50; }\n    h3 { color: #34495e; }\n    h4 { color: #7f8c8d; }\n    .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 0.9em; }\n  </style>\n</head>\n<body>\n  <div class=\"header\">\n    <h2>YouTube Comments Analysis Report</h2>\n    <h3>Video: ${$(\"Prepare Comments Data\").item.json.videoTitle}</h3>\n  </div>\n\n  <div class=\"section stats\">\n    <h3> Quick Statistics</h3>\n    <ul>\n      <li><strong>Total Comments Analyzed:</strong> ${$('Prepare Comments Data').item.json.totalComments}</li>\n      <li><strong>Average Likes per Comment:</strong> ${$('Prepare Comments Data').item.json.avgLikes}</li>\n      <li><strong>Total Replies:</strong> ${$('Prepare Comments Data').item.json.totalReplies}</li>\n      <li><strong>Sentiment Summary:</strong> \n        Positive: ${output.overall_sentiment_breakdown.positive}, \n        Negative: ${output.overall_sentiment_breakdown.negative}, \n        Neutral: ${output.overall_sentiment_breakdown.neutral}\n      </li>\n    </ul>\n  </div>\n\n  <div class=\"section stats\">\n    <h3>Common Questions</h3>\n    <ul>\n      ${common_question}\n    </ul>\n  </div>\n\n    <div class=\"section stats\">\n    <h3>Key feedback points and suggestions</h3>\n    <ul>\n      ${key_feedback_points_and_suggestions}\n    </ul>\n  </div>\n\n\n  <div class=\"section stats\">\n    <h3>Actionable insights for content improvement</h3>\n    <ul>\n      ${actionable_insights_for_content_improvement}\n    </ul>\n  </div>\n\n\n\n\n  <div class=\"footer\">\n    <p><em>Report generated on ${new Date().toLocaleString()}</em></p>\n    \n  </div>\n</body>\n</html>`;\n\n\n// Return the formatted data\nreturn  {\n  json: {\n    emailHTML,\n    subject: `YouTube Analysis: ${$('Prepare Comments Data').item.json.videoTitle} - ${$('Prepare Comments Data').item.json.totalComments} comments analyzed`,\n    videoTitle: $('Prepare Comments Data').item.json.videoTitle\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1860,
+        0
+      ],
+      "id": "05e891f9-d66d-46b2-9c17-ed1f678931d8",
+      "name": "Prepare HTML for Email"
+    },
+    {
+      "parameters": {
+        "sendTo": "muhammadmoinfiverr@gmail.com",
+        "subject": "={{ $json.subject }}",
+        "message": "={{ $json.emailHTML }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2080,
+        0
+      ],
+      "id": "27590169-143f-488c-8a03-66d44965bbe1",
+      "name": "Gmail Account Configuration",
+      "webhookId": "636cc976-4c26-43fd-af54-44061fbab5d9",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "3uIqXfxNdJN7A1bB",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "15wvmmyF7OOvZ5hrvNeowQlKbjTK1j6bpiWOf7tL-okU",
+          "mode": "list",
+          "cachedResultName": "Youtube_Video",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15wvmmyF7OOvZ5hrvNeowQlKbjTK1j6bpiWOf7tL-okU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15wvmmyF7OOvZ5hrvNeowQlKbjTK1j6bpiWOf7tL-okU/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $('Pick Video Ids from Google Sheet').item.json.ID }}",
+            "Video Title": "={{ $('Pick Video Ids from Google Sheet').item.json[\"Video Title\"] }}",
+            "Youtube Video ID": "={{ $('Pick Video Ids from Google Sheet').item.json[\"Youtube Video ID\"] }}",
+            "Status": "Mail Sent"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Video Title",
+              "displayName": "Video Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Youtube Video ID",
+              "displayName": "Youtube Video ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        2260,
+        0
+      ],
+      "id": "976353d4-a500-4b2f-ae3b-b01996cff81f",
+      "name": "Update Status on Google Sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "6NpgUo7DO2ycf1YT",
+          "name": "Google Sheets account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Set Video Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Video Details": {
+      "main": [
+        [
+          {
+            "node": "Get Youtube Video Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Youtube Video Comments": {
+      "main": [
+        [
+          {
+            "node": "Prepare Comments Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pick Video Ids from Google Sheet": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Youtube Video Details": {
+      "main": [
+        [
+          {
+            "node": "Get Youtube Video Comments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Comments Data": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Prepare HTML for Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare HTML for Email": {
+      "main": [
+        [
+          {
+            "node": "Gmail Account Configuration",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail Account Configuration": {
+      "main": [
+        [
+          {
+            "node": "Update Status on Google Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "6b5e96f3-fee3-40a9-a3f1-2abae275ab6d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ac07fd808320478a875ff6073b975242819e08143dbb904f7dfe95819dfdbbe0"
+  },
+  "id": "T3niUYLDlZBfNjjS",
+  "tags": []
+}
