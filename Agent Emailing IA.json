@@ -1,0 +1,2024 @@
+{
+  "name": "Autonomous AI Emailing Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs",
+          "mode": "list",
+          "cachedResultName": "AI agent customized outreach - leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1614566228,
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs/edit#gid=1614566228"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Summary": "={{ $json.summary }}",
+            "Job position": "={{ $json.position }}",
+            "Company LinkedIn": "={{ $json.card_current_position.linkedin_url }}",
+            "Company website": "={{ $json.card_current_position.website }}",
+            "Company industry": "={{ $json.card_current_position.industry }}",
+            "Company size": "={{ $json.card_current_position.staff_range }}",
+            "Company description": "={{ $json.card_current_position.description }}",
+            "Linkedin profile": "={{ $('Google Sheets').item.json['Linkedin profile'] }}"
+          },
+          "matchingColumns": [
+            "Linkedin profile"
+          ],
+          "schema": [
+            {
+              "id": "JobTitle - keyword",
+              "displayName": "JobTitle - keyword",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "location - Keyword",
+              "displayName": "location - Keyword",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "companyIndustry - Keyword",
+              "displayName": "companyIndustry - Keyword",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Linkedin result",
+              "displayName": "Linkedin result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Linkedin location",
+              "displayName": "Linkedin location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Linkedin preview",
+              "displayName": "Linkedin preview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Linkedin profile",
+              "displayName": "Linkedin profile",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Match request ? ",
+              "displayName": "Match request ? ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "First Name",
+              "displayName": "First Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Last Name",
+              "displayName": "Last Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Job position",
+              "displayName": "Job position",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Company website",
+              "displayName": "Company website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Company LinkedIn",
+              "displayName": "Company LinkedIn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Company industry",
+              "displayName": "Company industry",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Company size",
+              "displayName": "Company size",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Company description",
+              "displayName": "Company description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "First outreach message",
+              "displayName": "First outreach message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Instantly ID",
+              "displayName": "Instantly ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "34b71969-3f19-428d-8d40-8970f6984e71",
+      "name": "Add linkedin profile info",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [
+        1240,
+        -20
+      ],
+      "typeVersion": 4,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CRePSe92mBXqf1FT",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://piloterr.com/api/v2/linkedin/advanced/profile/info",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "={{ $json['Linkedin profile'] }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "68cea768-c5f0-4051-9a3e-621938f6fa13"
+            }
+          ]
+        },
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 3
+            }
+          }
+        }
+      },
+      "id": "c76ffd32-0cca-4c31-ac09-45f157d88a9c",
+      "name": "Scrape Linkedin profile [PILOTERR]",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        900,
+        -20
+      ],
+      "typeVersion": 4.1,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "content": "## To do \n+ Add your Piloterr API key",
+        "height": 276,
+        "width": 256,
+        "color": 3
+      },
+      "id": "324b2e9f-bdd5-49e4-878d-489315a09244",
+      "name": "Sticky Note10",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        840,
+        -100
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Leads - Get Linkedin profile and Data\n",
+        "height": 660,
+        "width": 880,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        640,
+        -260
+      ],
+      "typeVersion": 1,
+      "id": "5bd5b682-4a63-4c92-99f6-fd606edcf923",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Personalized outreach message",
+        "height": 620,
+        "width": 700,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2460,
+        -260
+      ],
+      "typeVersion": 1,
+      "id": "b0656269-d76f-4805-bc27-07c498179650",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Push to SmartLead + Get replies",
+        "height": 960,
+        "width": 1440,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3180,
+        -260
+      ],
+      "typeVersion": 1,
+      "id": "c20fd7a8-3839-4ac6-b970-84aff1de347b",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "options": {
+          "allowFileUploads": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -540,
+        -20
+      ],
+      "id": "efde530c-d5ca-4f44-9efd-09c3e35144a4",
+      "name": "When chat message received",
+      "webhookId": "51736266-1d58-46a9-99ac-0d016aa9b438"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs",
+          "mode": "list",
+          "cachedResultName": "AI agent customized outreach - leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1614566228,
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs/edit#gid=1614566228"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        680,
+        -20
+      ],
+      "id": "0b363acf-24eb-4f4d-9aa3-e7bb48a266aa",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CRePSe92mBXqf1FT",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Get email from BetterContact",
+        "height": 620,
+        "width": 800,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        -260
+      ],
+      "id": "1cd48e76-2b07-4a7a-95b3-ea948cee61a7",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "4d0bd2ae-7c96-44f4-843d-aed60408d89c",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        1960,
+        -20
+      ],
+      "id": "a0941ed2-2262-4de3-951f-a87ab255d7e0",
+      "name": "Webhook",
+      "webhookId": "4d0bd2ae-7c96-44f4-843d-aed60408d89c"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://app.bettercontact.rocks/api/v2/async/",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "api_key",
+              "value": "5b52f03297948ff9fc16erX"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"data\": [\n    {  \n      \"first_name\": \"{{ $('Google Sheets').item.json['First Name'] }}\",\n      \"last_name\": \"{{ $('Google Sheets').item.json['Last Name'] }}\",\n      \"company\":\"{{ $('Google Sheets').item.json.Company }}\",\n      \"company_domain\":\"{{ $json['Company website'] }}\",\n      \"linkedin_url\": \"{{ $('Google Sheets').item.json['Linkedin profile'] }}\",\n      \"custom_fields\":{\n      \"row_number\":\"{{ $('Google Sheets').item.json.row_number }}\"\n      }\n    }\n  ],\n  \"enrich_phone_number\": false,\n  \"enrich_email_address\": true,\n  \"webhook\": \"https://bettercontact.app.n8n.cloud/webhook/4d0bd2ae-7c96-44f4-843d-aed60408d89c\"\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1740,
+        -20
+      ],
+      "id": "19b5e323-766a-4f56-84ef-8988dad25d16",
+      "name": "Get email"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "outreach_message"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        2840,
+        200
+      ],
+      "id": "1303e1d5-d3c0-4002-9b85-4f4e14108761",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"Subject\":\"Connecting on Outbound Strategy\",\n\t\"Message\": \"Hi Firstname, ...\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        3020,
+        200
+      ],
+      "id": "24519b06-b08b-407b-a164-010eed07d12b",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        2700,
+        180
+      ],
+      "id": "a9a8d37f-68f8-4c65-92d7-ef6c59fbe5fd",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "EyXopW8VgxWtOZ4b",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5d3c3c43-fab9-432d-a35b-ec4dc7441126",
+              "leftValue": "={{ $json.body.data[0].contact_email_address_status }}",
+              "rightValue": "catch_all_safe",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "0a4b1c38-9298-442b-9aa3-f707b7761869",
+              "leftValue": "={{ $json.body.data[0].contact_email_address_status }}",
+              "rightValue": "deliverable",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        2140,
+        -20
+      ],
+      "id": "f41daade-4460-4948-8940-d1e1d208ca87",
+      "name": "Filter found email"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "30182565-ddd0-48e3-8a5d-9022b14d0bf3",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        3220,
+        400
+      ],
+      "id": "06b02ceb-977f-4a59-93f6-81142642854c",
+      "name": "Webhook1",
+      "webhookId": "30182565-ddd0-48e3-8a5d-9022b14d0bf3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://server.smartlead.ai/api/v1/campaigns/2340949/leads?api_key=e93a9f8f-fa9e-4845-9acb-5dc1a6a9f29f_zorf4hl",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"lead_list\": [\n\t\t{\n\t\t\t\"first_name\": \"{{ $('Get all data bout the lead').item.json['First Name'] }}\",\n\t\t\t\"last_name\": \"{{ $('Get all data bout the lead').item.json['Last Name'] }}\",\n\t\t\t\"email\": \"{{ $('Get all data bout the lead').item.json.Email }}\",\n\t\t\t\"company_name\": \"{{ $('Get all data bout the lead').item.json.Company }}\",\n\t\t\t\"website\": \"{{ $('Get all data bout the lead').item.json['Company website'] }}\",\n\t\t\t\"custom_fields\": {\n               \"subject\": \"{{ $json.output.Subject }}\", \"body\": \"{{ $json.output.Message.replace(/\\n/g, '\\\\n').replace(/\\r/g, '\\\\r') }}\" \n          },\n\t\t\t\"linkedin_profile\": \"{{ $('Get all data bout the lead').item.json['Linkedin profile'] }}\"\n\t\t}\n\t],\n\t\"settings\": {\n    \"ignore_global_block_list\": true,\n    \"ignore_unsubscribe_list\": true, \n    \"ignore_duplicate_leads_in_other_campaign\": false\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3260,
+        -20
+      ],
+      "id": "705cd1f5-40e2-4e43-b5cf-8ec0c96df023",
+      "name": "Push lead and message to Smartlead"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs",
+          "mode": "list",
+          "cachedResultName": "AI agent customized outreach - leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 717223598,
+          "mode": "list",
+          "cachedResultName": "Replies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs/edit#gid=717223598"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Reply": "Nice, but seems expensive",
+            "Lead email": "roman@bettercontact.rocks",
+            "smartlead_message_id": "<6539d42c-e167-slt36-4ca0-affa-5cbef822aa0b-0x1ssi4@bettercontact.rocks>",
+            "smartlead_stats_id": "6539d42c-e167-4ca0-affa-5cbef822aa0b"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Lead email",
+              "displayName": "Lead email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Reply",
+              "displayName": "Reply",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "smartlead_stats_id",
+              "displayName": "smartlead_stats_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "smartlead_message_id",
+              "displayName": "smartlead_message_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "reply_signal",
+              "displayName": "reply_signal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "reply_message",
+              "displayName": "reply_message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        3420,
+        400
+      ],
+      "id": "abc50e52-030a-42e9-baf9-3352bbf400cb",
+      "name": "Google Sheets2",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CRePSe92mBXqf1FT",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Analyse company's market/ICP/offer\n",
+        "height": 660,
+        "width": 880
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -340,
+        -260
+      ],
+      "typeVersion": 1,
+      "id": "c14e62c8-0a81-4fb3-8952-6bc95150ad81",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Based on {{ $json.chatInput }} analyse text and attachment to create a summarisation about the company's market, define the ICP, the core values. Define also what are the benefits of the product/service the company is selling.\nTry to extrapolate the benefits for the ICPs about this offer.",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -200,
+        -20
+      ],
+      "id": "d756b79a-037d-426b-9320-bbc00f6fc7c6",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        -240,
+        160
+      ],
+      "id": "14c900c8-895e-404c-971d-5dcc8169a997",
+      "name": "Anthropic Chat Model1",
+      "credentials": {
+        "anthropicApi": {
+          "id": "EyXopW8VgxWtOZ4b",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -80,
+        180
+      ],
+      "id": "9d4c40fb-b9de-4ef6-a597-4743625ed8cb",
+      "name": "Window Buffer Memory1"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"about_the_company\": \"XXXX\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        40,
+        200
+      ],
+      "id": "551f1809-4f15-440d-a67f-1d7b9f5c6389",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs",
+          "mode": "list",
+          "cachedResultName": "AI agent customized outreach - leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1941846331,
+          "mode": "list",
+          "cachedResultName": "Params",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs/edit#gid=1941846331"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "AI synthesis of the business": "={{ $json.output.about_the_company }}",
+            "row_number": "2"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "AI synthesis of the business",
+              "displayName": "AI synthesis of the business",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Instantly campaing ID",
+              "displayName": "Instantly campaing ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        300,
+        -20
+      ],
+      "id": "2cd9233b-5707-40bf-a511-54fb572d8e2b",
+      "name": "Google Sheets3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CRePSe92mBXqf1FT",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs",
+          "mode": "list",
+          "cachedResultName": "AI agent customized outreach - leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1614566228,
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs/edit#gid=1614566228"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Email",
+              "lookupValue": "={{ $('Webhook').item.json.body.data[0].contact_email_address }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2540,
+        -20
+      ],
+      "id": "9f6fc558-0aa1-4d62-b57d-6cd3bd4cc571",
+      "name": "Get all data bout the lead",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CRePSe92mBXqf1FT",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You're a cold email writer.\nThe goal is to create a first outreach message to a lead to propose him our offer.\n\nHere is our offer:\n{{ $json['AI synthesis of the business'] }}\n\n\nHere are the information about the lead to outreach:\nFirst Name:{{ $('Get all data bout the lead').item.json['First Name'] }} \nLast Name:{{ $('Get all data bout the lead').item.json['Last Name'] }}\nCurrent position: {{ $('Get all data bout the lead').item.json['Job position'] }}\nLead summary: {{ $('Get all data bout the lead').item.json.Summary }}\nCompany name: {{ $('Get all data bout the lead').item.json.Company }}\nCompany website: {{ $('Get all data bout the lead').item.json['Company website'] }}\nCompany description: {{ $('Get all data bout the lead').item.json['Company description'] }}\nCompany employees range: {{ $('Get all data bout the lead').item.json['Company size'] }}\nCompany Industry: {{ $('Get all data bout the lead').item.json['Company industry'] }}\n\nReturn a relevant outreach_message to have a first touchpoint proposing our offer and wait for a positive reply from this lead.\n\n\n\nThe two things to return are : \n- subject : Relevant subject email (10 words maximum)\n- message: The relevant outreach message (about 150 words) the most relevant and straight to the point as possible. Return this message in a format I can send it in a JSON field keeping the formating. Be careful not adding any signature at the end.",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        2860,
+        -20
+      ],
+      "id": "9956a8d0-19e7-4014-9e5c-e34980d8c09a",
+      "name": "AI Agent - Create relevant message"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs",
+          "mode": "list",
+          "cachedResultName": "AI agent customized outreach - leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1614566228,
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs/edit#gid=1614566228"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Email": "={{ $json.body.data[0].contact_email_address }}",
+            "Linkedin profile": "=",
+            "row_number": "={{ $json.body.data[0].custom_fields[0].value }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "JobTitle - keyword",
+              "displayName": "JobTitle - keyword",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "location - Keyword",
+              "displayName": "location - Keyword",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "companyIndustry - Keyword",
+              "displayName": "companyIndustry - Keyword",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Linkedin result",
+              "displayName": "Linkedin result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Linkedin location",
+              "displayName": "Linkedin location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Linkedin preview",
+              "displayName": "Linkedin preview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Linkedin profile",
+              "displayName": "Linkedin profile",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Match request ? ",
+              "displayName": "Match request ? ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "First Name",
+              "displayName": "First Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Last Name",
+              "displayName": "Last Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Job position",
+              "displayName": "Job position",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company website",
+              "displayName": "Company website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company LinkedIn",
+              "displayName": "Company LinkedIn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company industry",
+              "displayName": "Company industry",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company size",
+              "displayName": "Company size",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company description",
+              "displayName": "Company description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "First outreach message",
+              "displayName": "First outreach message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Instantly ID",
+              "displayName": "Instantly ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2300,
+        -20
+      ],
+      "id": "d83b264d-7681-4cd3-aa17-dc3bbeb3e0c3",
+      "name": "Add email to Google Sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CRePSe92mBXqf1FT",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs",
+          "mode": "list",
+          "cachedResultName": "AI agent customized outreach - leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1941846331,
+          "mode": "list",
+          "cachedResultName": "Params",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs/edit#gid=1941846331"
+        },
+        "options": {
+          "outputFormatting": {
+            "values": {
+              "general": "UNFORMATTED_VALUE",
+              "date": "FORMATTED_STRING"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2700,
+        -20
+      ],
+      "id": "a952f602-ddd6-48dd-8ca7-6cdc2e32b887",
+      "name": "Get all data bout the Value propostion",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CRePSe92mBXqf1FT",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Based on this lead's reply : '{{ $('Google Sheets2').item.json.Reply }}'\n\n1. Analyze if the reply is positive or not, meaning if the lead is interested and if we can propose a meeting to him. In any other case, consider the lead as not interested.\n\n2. If the leas is interested, write a message to propose to book a meeting using this link : https://cal.com/my-personal-agenda \n\n3. If lead is not interested or at least seems not to be and have objections, write a message to try to convinced him, based on the company's brief : '{{ $json['AI synthesis of the business'] }}'\nand the objections from the lead's reply. Propose him also to book a call to answer any of his questions.\n\n4. If you feel from the reply the lead is inconvincible and will never buy our product/service. Write a message that you understand what he said and wish him best wishes.\n\n4. Return 2 informations : \n- \"reply_signal\" = [\"positive\",\"to be convinced\",\"inconvincible\"] based on the feedback you haev on the lead's reponse.\n- \"reply_message\" = the message you prepared according to the lead's response. Keep this message short. Maximum 150 words !",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        3740,
+        400
+      ],
+      "id": "f44f6866-a9cd-4194-a6c4-cd11ffaccd89",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"reply_message\": \"This is the reply\",\n  \"reply_signal\":\"positive\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        3860,
+        620
+      ],
+      "id": "4bbcc983-c1c8-4b27-85c4-a5f2f43e9cf6",
+      "name": "Structured Output Parser2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        3720,
+        620
+      ],
+      "id": "9f5875bf-48f5-4afd-9f2d-daa3af85576c",
+      "name": "Anthropic Chat Model2",
+      "credentials": {
+        "anthropicApi": {
+          "id": "EyXopW8VgxWtOZ4b",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "reply"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        4080,
+        620
+      ],
+      "id": "3ab19cd4-5e74-4da8-bb3d-e4852b4c9b2e",
+      "name": "Window Buffer Memory2"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs",
+          "mode": "list",
+          "cachedResultName": "AI agent customized outreach - leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1941846331,
+          "mode": "list",
+          "cachedResultName": "Params",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs/edit#gid=1941846331"
+        },
+        "options": {
+          "outputFormatting": {
+            "values": {
+              "general": "UNFORMATTED_VALUE",
+              "date": "FORMATTED_STRING"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        3580,
+        400
+      ],
+      "id": "e4a221ad-3449-4443-931c-de77e2d7fe7f",
+      "name": "Get all data bout the Value propostion1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CRePSe92mBXqf1FT",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs",
+          "mode": "list",
+          "cachedResultName": "AI agent customized outreach - leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 717223598,
+          "mode": "list",
+          "cachedResultName": "Replies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E3GJGYwZp8VMddqur9bBEg2KfmUdRxUx0fqjGY1kbRs/edit#gid=717223598"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "2",
+            "reply_signal": "={{ $json.output.reply_signal }}",
+            "reply_message": "={{ $json.output.reply_message }}",
+            "smartlead_stats_id": "={{ $('Google Sheets2').item.json.smartlead_stats_id }}"
+          },
+          "matchingColumns": [
+            "smartlead_stats_id"
+          ],
+          "schema": [
+            {
+              "id": "Lead email",
+              "displayName": "Lead email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reply",
+              "displayName": "Reply",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "smartlead_stats_id",
+              "displayName": "smartlead_stats_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "smartlead_message_id",
+              "displayName": "smartlead_message_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "reply_signal",
+              "displayName": "reply_signal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "reply_message",
+              "displayName": "reply_message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        4120,
+        400
+      ],
+      "id": "7211e426-2c89-4d0a-a16d-d89b46b29bf4",
+      "name": "Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CRePSe92mBXqf1FT",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://server.smartlead.ai/api/v1/campaigns/2340949/reply-email-thread?api_key=e93a9f8f-fa9e-4845-9acb-5dc1a6a9f29f_zorf4hl",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"email_stats_id\": \"{{ $('Google Sheets2').item.json.smartlead_stats_id }}\",\n  \"email_body\": \"{{ $json.reply_message }}\",\n  \"reply_message_id\": \"{{ $('Google Sheets2').item.json.smartlead_message_id }}\",\n  \"add_signature\": true\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4360,
+        400
+      ],
+      "id": "5a7000f5-81e4-489b-b165-2eabe38ec8cc",
+      "name": "Push reply to Smartlead"
+    },
+    {
+      "parameters": {
+        "content": "## To do \n+ Add Smartlead API Key\n+ Set Smartlead campaign Id here",
+        "height": 420,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        4300,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "55b60382-fde7-4646-a806-a522a9f8b77f",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "## To do \n+ Map your own Gsheet",
+        "height": 300,
+        "width": 160,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        4100,
+        280
+      ],
+      "typeVersion": 1,
+      "id": "a6c71c88-ba72-4472-a4cd-c8e0ce6b4afd",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "## To do \n+ Map your own Gsheet",
+        "height": 300,
+        "width": 340,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3380,
+        280
+      ],
+      "typeVersion": 1,
+      "id": "a12845c5-b07e-40e0-ba6c-41bf3bd1e808",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "## To do \n+ Add Smartlead API Key\n+ Set Smartlead campaign Id here",
+        "height": 400,
+        "width": 220,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3200,
+        -160
+      ],
+      "typeVersion": 1,
+      "id": "f8c3932f-2084-4432-8a59-256afac94ba3",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "## To do \n+ Map your own Gsheet",
+        "height": 260,
+        "width": 600,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2260,
+        -100
+      ],
+      "typeVersion": 1,
+      "id": "e8caa0a5-9e3d-4962-8cfe-98ffa880eba8",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "content": "## To do \n+ Add your BetterContact API key\n+ Map the webhook URL from next step",
+        "height": 340,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1660,
+        -160
+      ],
+      "typeVersion": 1,
+      "id": "7f224e2d-e392-4176-b1b2-419faaae2f04",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "content": "## To do \n+ Map your own Gsheet",
+        "height": 280,
+        "width": 320,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1140,
+        -100
+      ],
+      "typeVersion": 1,
+      "id": "c844b97a-491c-4bd8-9d3c-4fc309984cbb",
+      "name": "Sticky Note13"
+    },
+    {
+      "parameters": {
+        "content": "## To do \n+ Map your own Gsheet",
+        "height": 280,
+        "width": 580,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        240,
+        -100
+      ],
+      "typeVersion": 1,
+      "id": "aa7052f1-b01e-4444-bdb3-3c45982c0b37",
+      "name": "Sticky Note14"
+    },
+    {
+      "parameters": {
+        "content": "## To do \n+ Add your Calendly/Google Calendar/whatever meetings link",
+        "height": 300,
+        "width": 340,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3720,
+        280
+      ],
+      "typeVersion": 1,
+      "id": "cbc39aff-4255-4356-8639-7090dcfefdbb",
+      "name": "Sticky Note12"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "bettercontact.app.n8n.cloud",
+            "user-agent": "Faraday v1.10.3",
+            "content-length": "2146",
+            "accept": "*/*",
+            "accept-encoding": "gzip, br",
+            "baggage": "sentry-trace_id=853b7b352bb84fe7ac0f2776f14c8236,sentry-sample_rate=1.0,sentry-sampled=true,sentry-environment=production,sentry-release=1b3a7e9fc40ec90f9e6b72651285a7e6e5975949,sentry-public_key=c761ce19e48540d7be886631c0b2ee05",
+            "cdn-loop": "cloudflare; loops=1; subreqs=1",
+            "cf-connecting-ip": "63.35.232.83",
+            "cf-ew-via": "15",
+            "cf-ipcountry": "IE",
+            "cf-ray": "96e724b4e3e5c1f6-DUB",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-worker": "n8n.cloud",
+            "content-type": "application/json",
+            "newrelic": "eyJ2IjpbMCwxXSwiZCI6eyJ0eSI6IkFwcCIsImFjIjoiNDAzMTE5NiIsImFwIjoiMTAzNzQ5NDk4MiIsInR4IjoiMDY4NzZjYzEzOTcwOTM2ZiIsInRyIjoiZmNmOGVmNzY5NDBmZmMwMTEzNDE5NDdkMTBkZDAwZDEiLCJzYSI6dHJ1ZSwicHIiOjEuOTIxNzM3LCJ0aSI6MTc1NTA3Njg5ODA0MCwiaWQiOiI4ZjYxZWZhZGIwM2Q0MWIyIn19",
+            "sentry-trace": "853b7b352bb84fe7ac0f2776f14c8236-cbe28168ae634b85-1",
+            "traceparent": "00-fcf8ef76940ffc011341947d10dd00d1-8f61efadb03d41b2-01",
+            "tracestate": "4031196@nr=0-0-4031196-1037494982-8f61efadb03d41b2-06876cc13970936f-1-1.921737-1755076898040",
+            "x-forwarded-for": "63.35.232.83, 162.158.6.104",
+            "x-forwarded-host": "bettercontact.app.n8n.cloud",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "traefik-prod-users-gwc-38-6f9f659dd9-bmkxt",
+            "x-is-trusted": "yes",
+            "x-real-ip": "63.35.232.83"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "id": "96a4feb3d9a759b06402",
+            "status": "terminated",
+            "credits_consumed": 1,
+            "credits_left": "3281.0",
+            "summary": {
+              "total": 1,
+              "valid": 1,
+              "catch_all_safe": 0,
+              "catch_all_not_safe": 0,
+              "undeliverable": 0,
+              "not_found": 0
+            },
+            "data": [
+              {
+                "enriched": true,
+                "email_provider": "Google",
+                "contact_phone_number_provider": null,
+                "company_id": null,
+                "contact_id": 4222144,
+                "company_logo": null,
+                "company_name": "BetterContact",
+                "company_size": null,
+                "contact_city": null,
+                "company_about": null,
+                "company_image": null,
+                "contact_posts": null,
+                "company_domain": "https://bettercontact.run",
+                "contact_avatar": null,
+                "contact_gender": null,
+                "company_founded": null,
+                "company_funding": null,
+                "company_similar": null,
+                "company_website": null,
+                "company_legal_id": null,
+                "contact_activity": null,
+                "contact_location": null,
+                "company_employees": null,
+                "company_followers": null,
+                "company_investors": null,
+                "contact_followers": null,
+                "contact_job_title": null,
+                "contact_last_name": "Hipp",
+                "company_industries": null,
+                "company_legal_name": null,
+                "company_stock_info": null,
+                "contact_experience": null,
+                "contact_first_name": "Roman",
+                "company_description": null,
+                "company_linkedin_id": null,
+                "contact_connections": null,
+                "contact_linkedin_id": null,
+                "company_address_city": null,
+                "company_country_code": null,
+                "company_headquarters": null,
+                "company_linkedin_url": null,
+                "company_phone_number": null,
+                "company_specialities": null,
+                "contact_country_code": null,
+                "contact_phone_number": null,
+                "company_address_state": null,
+                "company_industry_code": null,
+                "contact_email_address": "roman@bettercontact.rocks",
+                "company_address_street": null,
+                "company_crunchbase_url": null,
+                "company_directions_url": null,
+                "company_address_country": null,
+                "company_address_zipcode": null,
+                "contact_current_company": null,
+                "contact_phone_number_cc": null,
+                "company_employees_number": null,
+                "company_organization_type": null,
+                "contact_people_also_viewed": null,
+                "company_formatted_locations": null,
+                "contact_email_address_status": "deliverable",
+                "contact_linkedin_profile_url": "https://www.linkedin.com/in/roman-hipp",
+                "company_employees_in_linkedin": null,
+                "contact_email_address_provider": "Google",
+                "contact_additional_phone_number": null,
+                "contact_full_name": "Roman Hipp",
+                "custom_fields": [
+                  {
+                    "name": "row_number",
+                    "value": "2",
+                    "position": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "webhookUrl": "https://bettercontact.app.n8n.cloud/webhook/4d0bd2ae-7c96-44f4-843d-aed60408d89c",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Scrape Linkedin profile [PILOTERR]": {
+      "main": [
+        [
+          {
+            "node": "Add linkedin profile info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Scrape Linkedin profile [PILOTERR]",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Filter found email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add linkedin profile info": {
+      "main": [
+        [
+          {
+            "node": "Get email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent - Create relevant message",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent - Create relevant message",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent - Create relevant message",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter found email": {
+      "main": [
+        [
+          {
+            "node": "Add email to Google Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets3": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get all data bout the lead": {
+      "main": [
+        [
+          {
+            "node": "Get all data bout the Value propostion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent - Create relevant message": {
+      "main": [
+        [
+          {
+            "node": "Push lead and message to Smartlead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add email to Google Sheet": {
+      "main": [
+        [
+          {
+            "node": "Get all data bout the lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Push lead and message to Smartlead": {
+      "main": [
+        []
+      ]
+    },
+    "Get all data bout the Value propostion": {
+      "main": [
+        [
+          {
+            "node": "AI Agent - Create relevant message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets2": {
+      "main": [
+        [
+          {
+            "node": "Get all data bout the Value propostion1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get all data bout the Value propostion1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Push reply to Smartlead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "3da0b7cd-b2c0-49ed-9fe1-0131e03ce823",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "40cea776db30493c144764dd8e6d09fb9c1428b6eba22b14514760b0b94009aa"
+  },
+  "id": "sWlshpkbbN93aRvc",
+  "tags": []
+}
